@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -17,10 +16,20 @@ export default function StrategyList() {
     <div className="space-y-4">
       <h2 className="text-lg font-bold">戦略を選択</h2>
       <div className="grid grid-cols-3 gap-4">
-        {strategies.map((strategy, index) => (
-          <StrategyCard key={index} strategy={strategy} onSelect={setSelectedStrategy} />
+        {strategies.map((strategy) => (
+          <StrategyCard 
+            key={strategy} 
+            strategy={strategy} 
+            isSelected={strategy === selectedStrategy}
+            onSelect={setSelectedStrategy} 
+          />
         ))}
       </div>
+      {selectedStrategy && (
+        <p className="mt-4 text-center text-blue-600 font-semibold">
+          選択した戦略: {selectedStrategy}
+        </p>
+      )}
     </div>
   );
 }
